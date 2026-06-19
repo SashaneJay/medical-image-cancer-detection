@@ -1,1 +1,2 @@
 Initial CNN achieved 82.4% accuracy but only 45% cancer recall. Further improvements focused on reducing false negatives through transfer learning and data augmentation.
+The baseline CNN achieved 82.4% accuracy but only 45% recall for cancer detection. To improve sensitivity, a MobileNetV2 transfer-learning approach was trained on a balanced dataset. While overall accuracy decreased slightly to 80%, cancer recall increased to 82%, reducing false negatives from 296 to 100 on the test set.
