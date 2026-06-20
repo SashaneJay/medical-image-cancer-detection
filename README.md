@@ -182,4 +182,28 @@ streamlit run app/streamlit_app.py
 
 ### Non-Cancer Prediction
 
-![Non Cancer Prediction](screenshots/non_cancer.png)
+![Non Cancer Prediction](screenshots/non-cancer.png)
+
+## Model Performance
+
+### Custom CNN
+
+| Metric | Value |
+|----------|----------|
+| Accuracy | 82.45% |
+
+### MobileNetV2
+
+| Metric | Value |
+|----------|----------|
+| Accuracy | 79.95% |
+| Precision (Cancer) | 0.60 |
+| Recall (Cancer) | 0.82 |
+| F1 Score (Cancer) | 0.69 |
+
+### Confusion Matrix (MobileNetV2)
+
+| | Predicted Non-Cancer | Predicted Cancer |
+|---|---|---|
+| Actual Non-Cancer | 1156 | 301 |
+| Actual Cancer | 100 | 443 |
