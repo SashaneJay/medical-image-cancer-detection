@@ -1,5 +1,9 @@
 # Breast Cancer Histopathology Classifier
 
+🔗 Live Demo: https://medical-image-cancer-detection-n7p5dttqcsvdqvfah5nrje.streamlit.app/
+
+A deep learning application that classifies breast histopathology image patches as Cancer or Non-Cancer using TensorFlow and MobileNetV2.
+
 ## Overview
 
 This project uses deep learning and transfer learning to classify breast histopathology image patches as either:
@@ -165,3 +169,17 @@ streamlit run app/streamlit_app.py
 * Streamlit
 * Git
 * GitHub
+
+## Application Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Cancer Prediction
+
+![Cancer Prediction](screenshots/cancer.png)
+
+### Non-Cancer Prediction
+
+![Non Cancer Prediction](screenshots/non_cancer.png)
