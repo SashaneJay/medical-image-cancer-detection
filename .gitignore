@@ -2,7 +2,8 @@
 data/
 
 # Models
-models/
+models/*
+!models/mobilenetv2_cancer_classifier.keras
 
 # Python
 venv/
