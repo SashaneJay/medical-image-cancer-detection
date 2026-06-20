@@ -12,14 +12,11 @@ IMG_SIZE = (50, 50)
 st.title("Breast Cancer Histopathology Classifier")
 
 st.markdown("""
-This application uses a MobileNetV2 deep learning model trained on
-277,524 histopathology image patches.
+This application uses a MobileNetV2 deep learning model to classify breast
+histopathology image patches as **Cancer** or **Non-Cancer**.
 
-### Classes
-- Non-Cancer
-- Cancer
-
-For educational and research purposes only.
+**Dataset:** 277,524 histopathology image patches  
+**Purpose:** Educational machine learning project only.
 """)
 
 @st.cache_resource
@@ -29,7 +26,7 @@ def load_model():
 model = load_model()
 
 uploaded_file = st.file_uploader(
-    "Upload an image",
+    "Upload a histopathology image patch",
     type=["png", "jpg", "jpeg"]
 )
 
@@ -41,13 +38,18 @@ if uploaded_file is not None:
     image_array = np.array(image_resized) / 255.0
     image_array = np.expand_dims(image_array, axis=0)
 
-    prediction = model.predict(image_array)[0][0]
+    cancer_probability = float(model.predict(image_array)[0][0])
+    non_cancer_probability = 1 - cancer_probability
 
     st.subheader("Prediction Result")
 
-    if prediction >= 0.5:
-        st.error(f"Cancer detected probability: {prediction:.2%}")
+    if cancer_probability >= 0.5:
+        st.error(f"Cancer detected probability: {cancer_probability:.2%}")
     else:
-        st.success(f"Non-cancer probability: {(1 - prediction):.2%}")
+        st.success(f"Non-cancer probability: {non_cancer_probability:.2%}")
 
-    st.write("Raw cancer probability:", round(float(prediction), 4))
+    st.write("Raw cancer probability:", round(cancer_probability, 4))
+
+    st.warning(
+        "Disclaimer: This project is for educational purposes only and is not a medical diagnostic tool."
+    )
