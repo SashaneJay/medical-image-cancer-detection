@@ -20,10 +20,10 @@ histopathology image patches as **Cancer** or **Non-Cancer**.
 """)
 
 @st.cache_resource
-def load_model():
+def load_trained_model():
     return tf.keras.models.load_model(MODEL_PATH)
 
-model = load_model()
+model = load_trained_model()
 
 uploaded_file = st.file_uploader(
     "Upload a histopathology image patch",
@@ -32,7 +32,9 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", width=300)
+
+    st.subheader("Uploaded Image")
+    st.image(image, width=300)
 
     image_resized = image.resize(IMG_SIZE)
     image_array = np.array(image_resized) / 255.0
@@ -50,6 +52,18 @@ if uploaded_file is not None:
 
     st.write("Raw cancer probability:", round(cancer_probability, 4))
 
-    st.warning(
-        "Disclaimer: This project is for educational purposes only and is not a medical diagnostic tool."
-    )
+st.subheader("Model Performance")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.metric("Test Accuracy", "80.0%")
+    st.metric("Cancer Precision", "60%")
+
+with col2:
+    st.metric("Cancer Recall", "82%")
+    st.metric("Cancer F1 Score", "69%")
+
+st.warning(
+    "Disclaimer: This project is for educational purposes only and is not a medical diagnostic tool."
+)
